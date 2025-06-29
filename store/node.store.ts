@@ -3,7 +3,6 @@ import { fileURLToPath } from 'node:url'
 import type { newClassInterface } from '../interfaces/class.interface.js'
 
 import path from 'node:path'
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const dirPath = path.join(__dirname, '../plugins/nodes/')
 const files = glob.sync('**/index.js', { cwd: dirPath })
 
@@ -19,7 +18,7 @@ for (const file of files) {
 		.split('/')
 		.slice(0, -1)
 		.join('/')
-	const module = await import(`file://${path.resolve(dirPath, file)}`)
+	const module = require(`file://${path.resolve(dirPath, file)}`)
 	const model = module.default
 
 	try {
