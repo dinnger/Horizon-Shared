@@ -18,7 +18,7 @@ for (const file of files) {
 		.split('/')
 		.slice(0, -1)
 		.join('/')
-	const module = require(`file://${path.resolve(dirPath, file)}`)
+	const module = require(`${path.resolve(dirPath, file)}`)
 	const model = module.default
 
 	try {

@@ -1,6 +1,3 @@
-import { createRequire } from 'node:module'
-const require = createRequire(import.meta.url)
-
 const schema = {
 	$schema: 'http://json-schema.org/draft-07/schema#',
 	definitions: {

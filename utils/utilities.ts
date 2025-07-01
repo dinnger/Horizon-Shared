@@ -1,4 +1,4 @@
-import type { INode } from '../../shared/interfaces/workflow.interface.js'
+import type { INode } from '@shared/interfaces/workflow.interface.js'
 
 export function convertJson(json: string | object) {
 	try {

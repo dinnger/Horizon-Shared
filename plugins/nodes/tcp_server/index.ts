@@ -1,6 +1,6 @@
-import type { IClassNode, classOnExecuteInterface, infoInterface } from '@shared/interfaces/class.interface.js'
-import type { IPropertiesType } from '@shared/interfaces/workflow.properties.interface.js'
-import { convertJson } from '@shared/utils/utilities.js'
+import type { IClassNode, classOnExecuteInterface, infoInterface } from '@shared/interfaces/class.interface'
+import type { IPropertiesType } from '@shared/interfaces/workflow.properties.interface'
+import { convertJson } from '@shared/utils/utilities'
 import type { Socket } from 'node:net'
 
 const separator = '|$$|'
