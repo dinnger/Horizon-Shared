@@ -13,7 +13,7 @@ for (const file of files) {
 
 	const name = file.replace(/\\/g, '/').split('/').pop()?.replace('.ts', '').replace('.js', '').toLocaleLowerCase() || ''
 
-	const module = require(`file://${path.resolve(dirPath, file)}`)
+	const module = require(`${path.resolve(dirPath, file)}`)
 	const model = module.default
 	// const model = require(`${dirPath}${file}`).default
 	try {
