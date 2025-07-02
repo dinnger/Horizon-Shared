@@ -27,9 +27,10 @@ export default class implements IClassNode {
 			group: 'Triggers',
 			color: '#3498DB',
 			isTrigger: true,
-
-			inputs: ['input'],
-			outputs: ['response', 'error']
+			connectors: {
+				inputs: ['input'],
+				outputs: ['response', 'error']
+			}
 		}
 
 		this.properties = {

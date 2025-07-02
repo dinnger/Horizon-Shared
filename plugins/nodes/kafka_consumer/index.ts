@@ -18,9 +18,10 @@ export default class implements IClassNode {
 			group: 'Kafka',
 			color: '#3498DB',
 			isTrigger: true,
-
-			inputs: ['init', 'add', 'next', 'finish'],
-			outputs: ['response', 'finish', 'error']
+			connectors: {
+				inputs: ['init', 'add', 'next', 'finish'],
+				outputs: ['response', 'finish', 'error']
+			}
 		}
 
 		this.properties = {
@@ -80,9 +81,9 @@ export default class implements IClassNode {
 	}
 
 	async onCreate({ context }: classOnCreateInterface) {
-		this.info.inputs = []
-		this.info.inputs.push('init')
-		if (this.properties.autoCommit.value) this.info.inputs.push('next')
+		this.info.connectors.inputs = []
+		this.info.connectors.inputs.push('init')
+		if (this.properties.autoCommit.value) this.info.connectors.inputs.push('next')
 	}
 
 	async onExecute({ inputData, outputData, context, dependency }: classOnExecuteInterface) {

@@ -17,8 +17,10 @@ export default class implements IClassNode {
 			group: 'Project',
 			color: '#3498DB',
 			isSingleton: true,
-			inputs: ['response', 'rollback'],
-			outputs: []
+			connectors: {
+				inputs: ['response', 'rollback'],
+				outputs: []
+			}
 		}
 
 		this.properties = {

@@ -55,8 +55,10 @@ export default class AuthServiceNode implements IClassNode<IProperties> {
 			icon: '󰌆',
 			group: 'Autenticación',
 			color: '#4CAF50',
-			inputs: ['input'],
-			outputs: ['credentials', 'error']
+			connectors: {
+				inputs: ['input'],
+				outputs: ['credentials', 'error']
+			}
 		}
 
 		this.properties = {

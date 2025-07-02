@@ -22,8 +22,10 @@ export default class implements IClassNode {
 			icon: '󰒉',
 			group: 'Utilities',
 			color: '#E67E22',
-			inputs: ['input'],
-			outputs: ['valid', 'invalid', 'error']
+			connectors: {
+				inputs: ['input'],
+				outputs: ['valid', 'invalid', 'error']
+			}
 		}
 
 		this.properties = {

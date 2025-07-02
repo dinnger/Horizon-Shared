@@ -17,8 +17,10 @@ export default class ConditionalNode implements IClassNode<IProperties> {
 			icon: '󰈲',
 			group: 'Control Flow / Logic',
 			color: '#9b59b6',
-			inputs: ['input'],
-			outputs: ['error'],
+			connectors: {
+				inputs: ['input'],
+				outputs: ['error']
+			},
 			isSingleton: true
 		}
 
@@ -58,14 +60,14 @@ export default class ConditionalNode implements IClassNode<IProperties> {
 
 	async onCreate({ context, environment }: classOnCreateInterface) {
 		const valor = this.properties.conditions.value
-		this.info.outputs = []
+		this.info.connectors.outputs = []
 		for (let i = 0; i < valor.length; i++) {
 			const index = (i + 1).toString().padStart(2, '0')
 			const name = valor[i]?.name?.value?.toString().trim().replace('{{index}}', index) || `condicion_${index}`
-			this.info.outputs.push({ name: name })
+			this.info.connectors.outputs.push({ name: name })
 		}
-		this.info.outputs.push('else')
-		this.info.outputs.push('error')
+		this.info.connectors.outputs.push('else')
+		this.info.connectors.outputs.push('error')
 	}
 
 	async onExecute({ inputData, outputData }: classOnExecuteInterface): Promise<void> {

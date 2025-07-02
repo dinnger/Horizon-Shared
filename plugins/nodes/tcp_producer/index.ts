@@ -28,8 +28,10 @@ export default class TcpProducer implements IClassNode<IProperties> {
 			icon: '󰹑',
 			group: 'TCP',
 			color: '#3498DB',
-			inputs: ['init'],
-			outputs: ['response', 'error'],
+			connectors: {
+				inputs: ['init'],
+				outputs: ['response', 'error']
+			},
 			isSingleton: true
 		}
 

@@ -17,8 +17,10 @@ export default class implements IClassNode {
 			icon: '󰤇',
 			group: 'RabbitMQ',
 			color: '#3498DB',
-			inputs: ['init'],
-			outputs: ['response', 'error']
+			connectors: {
+				inputs: ['init'],
+				outputs: ['response', 'error']
+			}
 		}
 
 		this.properties = {

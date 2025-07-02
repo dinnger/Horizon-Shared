@@ -15,8 +15,10 @@ export default class implements IClassNode {
 			icon: '󱧐',
 			group: 'Project',
 			color: '#3498DB',
-			inputs: ['init', 'send'],
-			outputs: ['response', 'error', 'timeout']
+			connectors: {
+				inputs: ['init', 'send'],
+				outputs: ['response', 'error', 'timeout']
+			}
 		}
 
 		this.properties = {

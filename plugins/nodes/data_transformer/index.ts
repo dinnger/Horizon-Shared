@@ -20,8 +20,10 @@ export default class implements IClassNode<IProperties> {
 			icon: '󰁪',
 			group: 'Utilities',
 			color: '#E67E22',
-			inputs: ['input'],
-			outputs: ['output', 'error']
+			connectors: {
+				inputs: ['input'],
+				outputs: ['output', 'error']
+			}
 		}
 
 		this.properties = {

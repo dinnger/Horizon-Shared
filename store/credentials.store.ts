@@ -14,7 +14,7 @@ export function getCredentials() {
 		Object.entries(credentialsRegistry).map(([key, value]) => [
 			key,
 			{
-				name: value.name,
+				name: value.info.name,
 				info: value.info
 			}
 		])

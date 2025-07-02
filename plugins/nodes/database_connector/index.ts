@@ -34,8 +34,10 @@ export default class DatabaseNode implements IClassNode<IProperties, ICredential
 			icon: '󰆼',
 			group: 'Base de Datos',
 			color: '#52b0e7',
-			inputs: ['input'],
-			outputs: ['response', 'error'],
+			connectors: {
+				inputs: ['input'],
+				outputs: ['response', 'error']
+			},
 			isSingleton: true
 		}
 

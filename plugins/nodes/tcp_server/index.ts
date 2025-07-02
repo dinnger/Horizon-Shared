@@ -31,8 +31,10 @@ export default class implements IClassNode {
 			group: 'TCP',
 			color: '#27AE60',
 			isSingleton: true,
-			inputs: ['init', 'stop'],
-			outputs: ['connection', 'data', 'closed', 'error']
+			connectors: {
+				inputs: ['init', 'stop'],
+				outputs: ['connection', 'data', 'closed', 'error']
+			}
 		}
 
 		this.properties = {}

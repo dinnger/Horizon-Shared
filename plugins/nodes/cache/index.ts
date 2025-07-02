@@ -22,8 +22,10 @@ export default class implements IClassNode<IProperties> {
 			icon: '󰍉',
 			group: 'Utilities',
 			color: '#27AE60',
-			inputs: ['get', 'set'],
-			outputs: ['response', 'noExist'],
+			connectors: {
+				inputs: ['get', 'set'],
+				outputs: ['response', 'noExist']
+			},
 			isSingleton: true
 		}
 

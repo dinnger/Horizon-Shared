@@ -16,8 +16,10 @@ export default class implements IClassNode {
 			icon: '󱀏',
 			group: 'Kafka',
 			color: '#3498DB',
-			inputs: ['input'],
-			outputs: ['response', 'error']
+			connectors: {
+				inputs: ['input'],
+				outputs: ['response', 'error']
+			}
 		}
 		this.properties = {
 			ack: {

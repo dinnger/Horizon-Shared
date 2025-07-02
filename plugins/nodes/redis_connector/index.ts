@@ -64,8 +64,10 @@ export default class implements IClassNode<IProperties, ICredentials> {
 			icon: '󰽘', // Placeholder icon, consider finding a better one
 			group: 'Database',
 			color: '#DC382D',
-			inputs: ['input'],
-			outputs: ['response', 'error'],
+			connectors: {
+				inputs: ['input'],
+				outputs: ['response', 'error']
+			},
 			isSingleton: true
 		}
 

@@ -18,8 +18,10 @@ export default class implements IClassNode {
 			group: 'RabbitMQ',
 			color: '#3498DB',
 			isTrigger: true,
-			inputs: ['init'],
-			outputs: ['response', 'error', 'error:connection']
+			connectors: {
+				inputs: ['init'],
+				outputs: ['response', 'error', 'error:connection']
+			}
 		}
 		this.properties = {
 			url: {

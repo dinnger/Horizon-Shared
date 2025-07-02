@@ -12,8 +12,9 @@ export default class implements IClassNode {
 			icon: '󱈎',
 			group: 'Triggers',
 			color: '#3498DB',
-			inputs: [],
-			outputs: [{ name: 'init', nextNodeTag: 'output' }]
+			connectors: {
+				outputs: [{ name: 'init', nextNodeTag: 'output' }]
+			}
 		}
 
 		this.properties = {
