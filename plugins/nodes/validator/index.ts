@@ -1,9 +1,4 @@
-import type {
-	IClassNode,
-	classOnCreateInterface,
-	classOnExecuteInterface,
-	infoInterface
-} from '@shared/interfaces/class.interface.js'
+import type { IClassNode, classOnCreateInterface, classOnExecuteInterface, infoInterface } from '@shared/interfaces/class.interface.js'
 import type { IPropertiesType } from '@shared/interfaces/workflow.properties.interface.js'
 
 export default class implements IClassNode {
@@ -22,7 +17,7 @@ export default class implements IClassNode {
 		this.dependencies = ['ajv', 'ajv-errors', 'ajv-formats', 'ajv-i18n']
 
 		this.info = {
-			title: 'Validación',
+			name: 'Validación',
 			desc: 'Valida datos usando esquema JSON (AJV)',
 			icon: '󰒉',
 			group: 'Utilities',
@@ -106,15 +101,10 @@ export default class implements IClassNode {
 		// Mostrar u ocultar opciones avanzadas
 		const showAdvanced = this.properties.advancedOptions.value === true
 		this.properties.customErrorMessages.show = showAdvanced
-		this.properties.globalErrorMessages.show =
-			showAdvanced && this.properties.customErrorMessages.value === true
+		this.properties.globalErrorMessages.show = showAdvanced && this.properties.customErrorMessages.value === true
 	}
 
-	async onExecute({
-		inputData,
-		outputData,
-		dependency
-	}: classOnExecuteInterface): Promise<void> {
+	async onExecute({ inputData, outputData, dependency }: classOnExecuteInterface): Promise<void> {
 		try {
 			if (!inputData || !inputData.data) {
 				throw new Error('No se encontraron datos en la entrada')
@@ -143,16 +133,10 @@ export default class implements IClassNode {
 				let currentValue: any = inputData.data
 
 				for (const key of path) {
-					if (
-						currentValue &&
-						typeof currentValue === 'object' &&
-						key in currentValue
-					) {
+					if (currentValue && typeof currentValue === 'object' && key in currentValue) {
 						currentValue = currentValue[key]
 					} else {
-						throw new Error(
-							`Ruta de entrada inválida: ${this.properties.inputPath.value}`
-						)
+						throw new Error(`Ruta de entrada inválida: ${this.properties.inputPath.value}`)
 					}
 				}
 
@@ -162,19 +146,13 @@ export default class implements IClassNode {
 			// Parsear el esquema de validación
 			let validationSchema: any
 			try {
-				validationSchema = JSON.parse(
-					String(this.properties.validationSchema.value)
-				)
+				validationSchema = JSON.parse(String(this.properties.validationSchema.value))
 			} catch (error) {
-				throw new Error(
-					`Error al parsear el esquema de validación: ${(error as Error).message}`
-				)
+				throw new Error(`Error al parsear el esquema de validación: ${(error as Error).message}`)
 			}
 
 			// Aplicar keywords personalizados si hay código
-			const customKeywordsCode = String(
-				this.properties.customKeywords.value
-			).trim()
+			const customKeywordsCode = String(this.properties.customKeywords.value).trim()
 			if (customKeywordsCode && !customKeywordsCode.startsWith('//')) {
 				try {
 					// Crear una función segura para ejecutar el código
@@ -182,31 +160,21 @@ export default class implements IClassNode {
 					const applyCustomKeywords = new Function('ajv', customKeywordsCode)
 					applyCustomKeywords(ajv)
 				} catch (error) {
-					throw new Error(
-						`Error en keywords personalizados: ${(error as Error).message}`
-					)
+					throw new Error(`Error en keywords personalizados: ${(error as Error).message}`)
 				}
 			}
 
 			// Aplicar mensajes de error personalizados si están habilitados
-			if (
-				this.properties.advancedOptions.value === true &&
-				this.properties.customErrorMessages.value === true
-			) {
+			if (this.properties.advancedOptions.value === true && this.properties.customErrorMessages.value === true) {
 				try {
-					const globalErrorMessages = JSON.parse(
-						String(this.properties.globalErrorMessages.value)
-					)
+					const globalErrorMessages = JSON.parse(String(this.properties.globalErrorMessages.value))
 
 					// Si no hay un errorMessage en el esquema, agregarlo
 					if (!validationSchema.errorMessage) {
 						validationSchema.errorMessage = globalErrorMessages
 					}
 				} catch (error) {
-					console.warn(
-						'Error al parsear mensajes de error personalizados:',
-						error
-					)
+					console.warn('Error al parsear mensajes de error personalizados:', error)
 				}
 			}
 
@@ -245,9 +213,7 @@ export default class implements IClassNode {
 				outputData('invalid', {
 					valid: false,
 					errors: formattedErrors,
-					originalErrors: this.properties.errorDetails.value
-						? errors
-						: undefined,
+					originalErrors: this.properties.errorDetails.value ? errors : undefined,
 					data: inputValue
 				})
 			}

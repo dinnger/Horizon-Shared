@@ -10,7 +10,7 @@ export default class implements IClassNode {
 		this.dependencies = ['exceljs']
 
 		this.info = {
-			title: 'Excel Generator',
+			name: 'Excel Generator',
 			desc: 'Genera archivos Excel a partir de datos JSON',
 			icon: '󰈛',
 			group: 'Utilities',

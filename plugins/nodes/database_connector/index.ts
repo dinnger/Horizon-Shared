@@ -29,7 +29,7 @@ export default class DatabaseNode implements IClassNode<IProperties, ICredential
 		this.accessSecrets = true
 		this.dependencies = ['sequelize']
 		this.info = {
-			title: 'Database',
+			name: 'Database',
 			desc: 'Interactúa con bases de datos usando Sequelize.',
 			icon: '󰆼',
 			group: 'Base de Datos',

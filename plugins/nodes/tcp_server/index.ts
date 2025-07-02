@@ -25,7 +25,7 @@ export default class implements IClassNode {
 		public subscriberRequest = new Map<string, Socket>()
 	) {
 		this.info = {
-			title: 'TCP Server',
+			name: 'TCP Server',
 			desc: 'Recibe datos a través de una conexión TCP',
 			icon: '󰥿',
 			group: 'TCP',

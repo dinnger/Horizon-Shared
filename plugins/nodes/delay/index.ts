@@ -7,7 +7,7 @@ export default class implements IClassNode {
 		public properties: IPropertiesType
 	) {
 		this.info = {
-			title: 'Delay',
+			name: 'Delay',
 			desc: 'Show value inside the console',
 			icon: '󱫞',
 			group: 'Timer',

@@ -1,23 +1,19 @@
+import type { classOnExecuteInterface, IClassNode } from '@shared/interfaces/class.interface'
 import type { IPropertiesType } from '@shared/interfaces/workflow.properties.interface.js'
-import type {
-	IClassNode,
-	classOnExecuteInterface,
-	infoInterface
-} from '../../../interfaces/class.interface.js'
 
 export default class implements IClassNode {
 	constructor(
-		public info: infoInterface,
+		public info: IClassNode['info'],
 		public properties: IPropertiesType
 	) {
 		this.info = {
-			title: 'Iniciador',
+			name: 'Iniciador',
 			desc: 'Nodo que permite iniciar un flujo',
 			icon: '󱈎',
 			group: 'Triggers',
 			color: '#3498DB',
 			inputs: [],
-			outputs: ['init']
+			outputs: [{ name: 'init', nextNodeTag: 'output' }]
 		}
 
 		this.properties = {
@@ -38,8 +34,7 @@ export default class implements IClassNode {
 			},
 			schema: {
 				name: 'Esquema de Datos',
-				description:
-					'Si es llamado por otro flujo, informara la estructura que necesita el flujo actual',
+				description: 'Si es llamado por otro flujo, informara la estructura que necesita el flujo actual',
 				type: 'code',
 				lang: 'json',
 				value: JSON.stringify({ dato1: 'string', dato2: 'number' }, null, 2)

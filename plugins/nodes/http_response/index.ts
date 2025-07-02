@@ -9,7 +9,7 @@ export default class implements IClassNode {
 		public properties: IPropertiesType
 	) {
 		this.info = {
-			title: 'Response',
+			name: 'Response',
 			desc: 'Devuelve la respuesta de una llamada webhook',
 			icon: '󰌑',
 			group: 'Input/Output',

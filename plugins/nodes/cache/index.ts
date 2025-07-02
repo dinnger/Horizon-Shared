@@ -17,7 +17,7 @@ export default class implements IClassNode<IProperties> {
 	) {
 		this.dependencies = ['node-cache']
 		this.info = {
-			title: 'Cache',
+			name: 'Cache',
 			desc: 'Almacena y recupera datos en memoria usando node-cache',
 			icon: '󰍉',
 			group: 'Utilities',

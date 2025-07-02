@@ -12,7 +12,7 @@ export default class ConditionalNode implements IClassNode<IProperties> {
 		public meta: { [key: string]: any } = {}
 	) {
 		this.info = {
-			title: 'Conditional',
+			name: 'Conditional',
 			desc: 'Evalúa una condición y ramifica según el resultado.',
 			icon: '󰈲',
 			group: 'Control Flow / Logic',
@@ -62,7 +62,7 @@ export default class ConditionalNode implements IClassNode<IProperties> {
 		for (let i = 0; i < valor.length; i++) {
 			const index = (i + 1).toString().padStart(2, '0')
 			const name = valor[i]?.name?.value?.toString().trim().replace('{{index}}', index) || `condicion_${index}`
-			this.info.outputs.push(name)
+			this.info.outputs.push({ name: name })
 		}
 		this.info.outputs.push('else')
 		this.info.outputs.push('error')

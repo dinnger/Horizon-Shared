@@ -12,7 +12,7 @@ export default class implements IClassNode {
 		public properties: IPropertiesType
 	) {
 		this.info = {
-			title: 'Kafka Consumer',
+			name: 'Kafka Consumer',
 			desc: 'Consume mensajes de un tópico de Kafka',
 			icon: '󱀏',
 			group: 'Kafka',

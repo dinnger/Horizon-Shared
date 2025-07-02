@@ -1,6 +1,13 @@
 //  https://node-oracledb.readthedocs.io/en/v6.7.2/user_guide/aq.html
 import type { IClassNode, classOnCreateInterface, classOnExecuteInterface, infoInterface } from '@shared/interfaces/class.interface.js'
-import type { ICodeProperty, IOptionsProperty, IPropertiesType, ISecretProperty, IStringProperty, ISwitchProperty } from '@shared/interfaces/workflow.properties.interface.js'
+import type {
+	ICodeProperty,
+	IOptionsProperty,
+	IPropertiesType,
+	ISecretProperty,
+	IStringProperty,
+	ISwitchProperty
+} from '@shared/interfaces/workflow.properties.interface.js'
 
 interface IProperties extends IPropertiesType {
 	connection: IOptionsProperty
@@ -31,7 +38,7 @@ export default class OracleAQNode implements IClassNode<IProperties, ICredential
 		this.accessSecrets = true
 		this.dependencies = ['oracledb']
 		this.info = {
-			title: 'Oracle AQ',
+			name: 'Oracle AQ',
 			desc: 'Consumir o producir mensajes en Oracle Advanced Queuing',
 			icon: '󰘙',
 			group: 'Base de Datos',
@@ -109,7 +116,8 @@ export default class OracleAQNode implements IClassNode<IProperties, ICredential
 				name: 'Mensaje',
 				type: 'code',
 				lang: 'json',
-				value: '{\n  "P_TABLE_NAME": "EXAMPLE_TABLE",\n  "P_PROCEDURE_NAME": "EXAMPLE_PROCEDURE",\n  "P_INSTRUCTION": "SELECT * FROM DUAL"\n}',
+				value:
+					'{\n  "P_TABLE_NAME": "EXAMPLE_TABLE",\n  "P_PROCEDURE_NAME": "EXAMPLE_PROCEDURE",\n  "P_INSTRUCTION": "SELECT * FROM DUAL"\n}',
 				description: 'Contenido del mensaje a enviar (solo para enqueue)'
 			},
 			keepAlive: {

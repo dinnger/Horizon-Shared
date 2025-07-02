@@ -9,7 +9,7 @@ export default class implements IClassNode {
 		public meta: { [key: string]: any } = {}
 	) {
 		this.info = {
-			title: 'Message',
+			name: 'Message',
 			desc: 'Send and receive messages',
 			icon: '󱋵',
 			group: 'Project',

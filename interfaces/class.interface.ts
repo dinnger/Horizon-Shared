@@ -83,6 +83,11 @@ export interface classOnCredential {
 	dependency: classDependencyInterface
 	client: IClientService
 }
+export interface INodeConnectors {
+	inputs: { name: string; nextNodeTag?: string }[] | string[]
+	outputs: { name: string; nextNodeTag?: string }[] | string[]
+	callbacks?: { name: string; nextNodeTag?: string }[] | string[]
+}
 
 export type IClassOnCredentialResponse = Promise<IClientActionResponse>
 
@@ -100,8 +105,8 @@ export type IClassOnCredentialResponse = Promise<IClientActionResponse>
  * @property {string[]} inputs - The list of input connections for the plugin.
  * @property {string[]} outputs - The list of output connections for the plugin.
  */
-export interface infoInterface {
-	title: string
+export interface infoInterface extends INodeConnectors {
+	name: string
 	desc: string
 	icon: string
 	group: string
@@ -114,8 +119,6 @@ export interface infoInterface {
 		Si es true, significa que el nodo mantiene una instancia de ejecución por cada entrada
 	*/
 	isSingleton?: boolean
-	inputs: string[]
-	outputs: string[]
 }
 
 /**
@@ -201,7 +204,6 @@ export interface IClassNode<T extends IPropertiesType = IPropertiesType, C exten
 }
 
 export interface newClassInterface extends Omit<IClassNode, 'onExecute'> {
-	name: string
 	type: string
 	group?: string | string[]
 	dependencies?: string[]

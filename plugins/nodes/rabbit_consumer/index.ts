@@ -12,7 +12,7 @@ export default class implements IClassNode {
 		public properties: IPropertiesType
 	) {
 		this.info = {
-			title: 'RabbitMQ Consumer',
+			name: 'RabbitMQ Consumer',
 			desc: 'Consume mensajes de un tópico de RabbitMQ',
 			icon: '󰤇',
 			group: 'RabbitMQ',

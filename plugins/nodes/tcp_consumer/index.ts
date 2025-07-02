@@ -1,8 +1,4 @@
-import type {
-	IClassNode,
-	classOnExecuteInterface,
-	infoInterface
-} from '@shared/interfaces/class.interface.js'
+import type { IClassNode, classOnExecuteInterface, infoInterface } from '@shared/interfaces/class.interface.js'
 import type { IPropertiesType } from '@shared/interfaces/workflow.properties.interface.js'
 
 export default class implements IClassNode {
@@ -15,7 +11,7 @@ export default class implements IClassNode {
 		public meta: { [key: string]: any } = {}
 	) {
 		this.info = {
-			title: 'TCP Consumer',
+			name: 'TCP Consumer',
 			desc: 'Recibe datos a través de una conexión TCP',
 			icon: '󰥿',
 			group: 'TCP',
@@ -30,8 +26,7 @@ export default class implements IClassNode {
 				name: 'Host:',
 				value: '0.0.0.0',
 				type: 'string',
-				description:
-					'Dirección IP donde escuchará el servidor (0.0.0.0 para todas las interfaces)',
+				description: 'Dirección IP donde escuchará el servidor (0.0.0.0 para todas las interfaces)',
 				size: 2
 			},
 			port: {
@@ -72,12 +67,7 @@ export default class implements IClassNode {
 		}
 	}
 
-	async onExecute({
-		inputData,
-		outputData,
-		dependency,
-		context
-	}: classOnExecuteInterface): Promise<void> {
+	async onExecute({ inputData, outputData, dependency, context }: classOnExecuteInterface): Promise<void> {
 		try {
 			const net = await import('node:net')
 
@@ -97,9 +87,7 @@ export default class implements IClassNode {
 
 			// Manejar conexiones entrantes
 			this.server.on('connection', (socket: any) => {
-				console.log(
-					`Nueva conexión desde ${socket.remoteAddress}:${socket.remotePort}`
-				)
+				console.log(`Nueva conexión desde ${socket.remoteAddress}:${socket.remotePort}`)
 
 				// Agregar la conexión a la lista para poder cerrarla después
 				this.connections.push(socket)
@@ -143,9 +131,7 @@ export default class implements IClassNode {
 
 				// Manejar cierre de conexión
 				socket.on('end', () => {
-					console.log(
-						`Conexión cerrada desde ${socket.remoteAddress}:${socket.remotePort}`
-					)
+					console.log(`Conexión cerrada desde ${socket.remoteAddress}:${socket.remotePort}`)
 					// Eliminar la conexión de la lista
 					this.connections = this.connections.filter((conn) => conn !== socket)
 					outputData('closed', {

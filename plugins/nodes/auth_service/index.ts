@@ -1,9 +1,4 @@
-import type {
-	IClassNode,
-	classOnCreateInterface,
-	classOnExecuteInterface,
-	infoInterface
-} from '@shared/interfaces/class.interface.js'
+import type { IClassNode, classOnCreateInterface, classOnExecuteInterface, infoInterface } from '@shared/interfaces/class.interface.js'
 import type {
 	ICodeProperty,
 	IOptionsProperty,
@@ -55,7 +50,7 @@ export default class AuthServiceNode implements IClassNode<IProperties> {
 		this.accessSecrets = true
 		this.dependencies = ['axios', 'crypto', 'querystring']
 		this.info = {
-			title: 'Autenticación',
+			name: 'Autenticación',
 			desc: 'Gestiona la autenticación con cualquier servicio que requiera autenticación',
 			icon: '󰌆',
 			group: 'Autenticación',
@@ -69,8 +64,7 @@ export default class AuthServiceNode implements IClassNode<IProperties> {
 				name: 'Nombre del servicio',
 				type: 'string',
 				value: '',
-				description:
-					'Un nombre descriptivo para este servicio (ej. Spotify, Google Drive, etc.)'
+				description: 'Un nombre descriptivo para este servicio (ej. Spotify, Google Drive, etc.)'
 			},
 			authMethod: {
 				name: 'Método de autenticación',
@@ -105,16 +99,14 @@ export default class AuthServiceNode implements IClassNode<IProperties> {
 				type: 'string',
 				value: '',
 				show: true,
-				description:
-					'URL para solicitar autorización (ej. https://accounts.google.com/o/oauth2/v2/auth)'
+				description: 'URL para solicitar autorización (ej. https://accounts.google.com/o/oauth2/v2/auth)'
 			},
 			tokenUrl: {
 				name: 'URL de token',
 				type: 'string',
 				value: '',
 				show: true,
-				description:
-					'URL para obtener token (ej. https://oauth2.googleapis.com/token)'
+				description: 'URL para obtener token (ej. https://oauth2.googleapis.com/token)'
 			},
 			clientId: {
 				name: 'Client ID',
@@ -229,10 +221,7 @@ export default class AuthServiceNode implements IClassNode<IProperties> {
 		}
 	}
 
-	async onCreate({
-		dependency,
-		environment
-	}: classOnCreateInterface): Promise<void> {
+	async onCreate({ dependency, environment }: classOnCreateInterface): Promise<void> {
 		// Mostrar/ocultar campos según el método de autenticación seleccionado
 		this.hideAllAuthFields()
 
@@ -317,9 +306,7 @@ export default class AuthServiceNode implements IClassNode<IProperties> {
 					})
 				}
 
-				const [type, subType, name] = this.properties.authSecret.value
-					.toString()
-					.split('_')
+				const [type, subType, name] = this.properties.authSecret.value.toString().split('_')
 
 				credentials = await dependency.getSecret({ type, subType, name })
 
@@ -378,29 +365,20 @@ export default class AuthServiceNode implements IClassNode<IProperties> {
 
 			try {
 				const extraParamsValue = this.properties.extraParams.value
-				if (
-					typeof extraParamsValue === 'string' &&
-					extraParamsValue.trim() !== ''
-				) {
+				if (typeof extraParamsValue === 'string' && extraParamsValue.trim() !== '') {
 					extraParams = JSON.parse(extraParamsValue)
 				} else if (typeof extraParamsValue === 'object') {
 					extraParams = extraParamsValue
 				}
 
 				const extraHeadersValue = this.properties.extraHeaders.value
-				if (
-					typeof extraHeadersValue === 'string' &&
-					extraHeadersValue.trim() !== ''
-				) {
+				if (typeof extraHeadersValue === 'string' && extraHeadersValue.trim() !== '') {
 					extraHeaders = JSON.parse(extraHeadersValue)
 				} else if (typeof extraHeadersValue === 'object') {
 					extraHeaders = extraHeadersValue
 				}
 			} catch (error) {
-				console.error(
-					'Error al parsear parámetros o headers adicionales:',
-					error
-				)
+				console.error('Error al parsear parámetros o headers adicionales:', error)
 			}
 
 			// Generar credenciales y tokens según el método de autenticación
@@ -430,10 +408,7 @@ export default class AuthServiceNode implements IClassNode<IProperties> {
 
 					// Construir URL con parámetros
 					const queryString = Object.entries(authUrlParams)
-						.filter(
-							([_, value]) =>
-								value !== undefined && value !== null && value !== ''
-						)
+						.filter(([_, value]) => value !== undefined && value !== null && value !== '')
 						.map(([key, value]) => {
 							return `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`
 						})
@@ -451,8 +426,7 @@ export default class AuthServiceNode implements IClassNode<IProperties> {
 							redirectUri: credentials.redirectUri,
 							scopes: credentials.scopes
 						},
-						message:
-							'Se requiere autorización del usuario. Utilice la URL de autorización.',
+						message: 'Se requiere autorización del usuario. Utilice la URL de autorización.',
 						step: 'authorization'
 					}
 					break
@@ -465,8 +439,7 @@ export default class AuthServiceNode implements IClassNode<IProperties> {
 						apiKeyHeaders[credentials.apiKeyHeaderName] = credentials.apiKey
 					}
 					if (credentials.apiSecret && credentials.apiSecretHeaderName) {
-						apiKeyHeaders[credentials.apiSecretHeaderName] =
-							credentials.apiSecret
+						apiKeyHeaders[credentials.apiSecretHeaderName] = credentials.apiSecret
 					}
 
 					authResult = {
@@ -511,9 +484,7 @@ export default class AuthServiceNode implements IClassNode<IProperties> {
 						})
 					}
 
-					const basicAuthToken = Buffer.from(
-						`${credentials.username}:${credentials.password}`
-					).toString('base64')
+					const basicAuthToken = Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64')
 					authResult = {
 						...authResult,
 						credentials: {

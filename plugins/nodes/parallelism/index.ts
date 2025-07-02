@@ -11,7 +11,7 @@ export default class implements IClassNode {
 		} = {}
 	) {
 		this.info = {
-			title: 'Parallelism',
+			name: 'Parallelism',
 			desc: 'Procesa multiples entradas en paralelo.',
 			icon: '󰽜',
 			group: 'Procesamiento',

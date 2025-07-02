@@ -1,8 +1,4 @@
-import type {
-	IClassNode,
-	classOnExecuteInterface,
-	infoInterface
-} from '@shared/interfaces/class.interface.js'
+import type { IClassNode, classOnExecuteInterface, infoInterface } from '@shared/interfaces/class.interface.js'
 import type { IPropertiesType } from '@shared/interfaces/workflow.properties.interface.js'
 
 export default class implements IClassNode {
@@ -15,7 +11,7 @@ export default class implements IClassNode {
 		public properties: IPropertiesType
 	) {
 		this.info = {
-			title: 'Kafka Ack',
+			name: 'Kafka Ack',
 			desc: 'Confirma mensajes de un tópico de Kafka',
 			icon: '󱀏',
 			group: 'Kafka',
@@ -28,8 +24,7 @@ export default class implements IClassNode {
 				name: 'Ack:',
 				value: true,
 				type: 'switch',
-				description:
-					'Habilita la confirmación del mensaje, si no se confirma el mensaje se pierde (nack)',
+				description: 'Habilita la confirmación del mensaje, si no se confirma el mensaje se pierde (nack)',
 				size: 1
 			}
 		}
@@ -38,8 +33,7 @@ export default class implements IClassNode {
 	async onExecute({ inputData, outputData, execute }: classOnExecuteInterface) {
 		try {
 			const node = execute.getNodeByType('triggers/rabbit')
-			if (!node)
-				return outputData('error', { error: 'No se ha definido el nodo' })
+			if (!node) return outputData('error', { error: 'No se ha definido el nodo' })
 
 			const channel = node?.meta?.channel
 			const message = node?.meta?.message

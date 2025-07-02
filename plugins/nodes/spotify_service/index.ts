@@ -1,5 +1,12 @@
 import type { IClassNode, classOnCredential, classOnExecuteInterface, infoInterface } from '@shared/interfaces/class.interface.js'
-import type { ICodeProperty, ICredentialProperty, INumberProperty, IOptionsProperty, IPropertiesType, IStringProperty } from '@shared/interfaces/workflow.properties.interface.js'
+import type {
+	ICodeProperty,
+	ICredentialProperty,
+	INumberProperty,
+	IOptionsProperty,
+	IPropertiesType,
+	IStringProperty
+} from '@shared/interfaces/workflow.properties.interface.js'
 import querystring from 'node:querystring'
 
 interface IProperties extends IPropertiesType {
@@ -30,7 +37,7 @@ export default class implements IClassNode<IProperties, ICredentials> {
 		this.accessSecrets = true
 		this.dependencies = ['axios']
 		this.info = {
-			title: 'Spotify',
+			name: 'Spotify',
 			desc: 'Conecta con Spotify para acceder a información de canciones y playlists',
 			icon: '󰓇',
 			group: 'Servicios',
@@ -150,7 +157,8 @@ export default class implements IClassNode<IProperties, ICredentials> {
 			scope: {
 				name: 'Scope',
 				type: 'string',
-				value: 'playlist-read-private playlist-read-collaborative user-read-playback-state user-modify-playback-state user-read-currently-playing'
+				value:
+					'playlist-read-private playlist-read-collaborative user-read-playback-state user-modify-playback-state user-read-currently-playing'
 			},
 			redirectUri: {
 				name: 'Redirect URI',

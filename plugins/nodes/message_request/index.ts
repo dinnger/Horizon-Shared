@@ -10,7 +10,7 @@ export default class implements IClassNode {
 	) {
 		this.dependencies = ['uuid']
 		this.info = {
-			title: 'Message Request',
+			name: 'Message Request',
 			desc: 'Envía un mensaje y espera su respuesta',
 			icon: '󱧐',
 			group: 'Project',

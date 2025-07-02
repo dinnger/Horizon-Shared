@@ -8,7 +8,7 @@ export default class implements IClassNode {
 		public meta: { [key: string]: any } = {}
 	) {
 		this.info = {
-			title: 'Iteration',
+			name: 'Iteration',
 			desc: 'Iterates over a list of items and processes each one.',
 			icon: '󱖈',
 			group: 'Procesamiento',

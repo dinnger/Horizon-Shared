@@ -10,7 +10,7 @@ export default class implements IClassNode {
 		this.dependencies = ['nodemailer']
 
 		this.info = {
-			title: 'Gmail',
+			name: 'Gmail',
 			desc: 'Envía correos electrónicos a través de Gmail',
 			icon: '󰊫',
 			group: 'Email',

@@ -1,8 +1,4 @@
-import type {
-	IClassNode,
-	classOnExecuteInterface,
-	infoInterface
-} from '@shared/interfaces/class.interface.js'
+import type { IClassNode, classOnExecuteInterface, infoInterface } from '@shared/interfaces/class.interface.js'
 import type { IPropertiesType } from '@shared/interfaces/workflow.properties.interface.js'
 
 export default class implements IClassNode {
@@ -16,7 +12,7 @@ export default class implements IClassNode {
 		public properties: IPropertiesType
 	) {
 		this.info = {
-			title: 'RabbitMQ Producer',
+			name: 'RabbitMQ Producer',
 			desc: 'Produce mensajes de un tópico de RabbitMQ',
 			icon: '󰤇',
 			group: 'RabbitMQ',
@@ -42,8 +38,7 @@ export default class implements IClassNode {
 				name: 'Exchange:',
 				value: '',
 				type: 'string',
-				description:
-					'Nombre del Exchange, si no se define se usa el nombre de la cola',
+				description: 'Nombre del Exchange, si no se define se usa el nombre de la cola',
 				size: 2
 			},
 			exchangeType: {
@@ -70,15 +65,13 @@ export default class implements IClassNode {
 				name: 'Routing Key:',
 				value: '',
 				type: 'string',
-				description:
-					'Nombre del routing key, si no se define se usa el nombre de la cola',
+				description: 'Nombre del routing key, si no se define se usa el nombre de la cola',
 				size: 1
 			},
 			retry: {
 				name: 'Reintento (seg):',
 				value: 10,
-				description:
-					'Tiempo máximo de espera para reintentar una conexión (Cada reintento se tomara el doble de tiempo de la anterior)',
+				description: 'Tiempo máximo de espera para reintentar una conexión (Cada reintento se tomara el doble de tiempo de la anterior)',
 				type: 'number',
 				size: 1
 			},
@@ -106,12 +99,7 @@ export default class implements IClassNode {
 		}
 	}
 
-	async onExecute({
-		inputData,
-		outputData,
-		context,
-		dependency
-	}: classOnExecuteInterface) {
+	async onExecute({ inputData, outputData, context, dependency }: classOnExecuteInterface) {
 		try {
 			const amqp = await dependency.getRequire('amqplib')
 			const queue = this.properties.queue.value
@@ -131,26 +119,15 @@ export default class implements IClassNode {
 
 			// Create a queue
 			if (this.properties.exchange.value !== '') {
-				await channel.assertExchange(
-					this.properties.exchange.value,
-					this.properties.exchangeType.value,
-					{ durable }
-				)
-				const sent = await channel.publish(
-					this.properties.exchange.value,
-					this.properties.routingKey.value || '',
-					message,
-					{ persistent }
-				)
-				if (!sent)
-					return outputData('error', { error: 'Error sending message' })
+				await channel.assertExchange(this.properties.exchange.value, this.properties.exchangeType.value, { durable })
+				const sent = await channel.publish(this.properties.exchange.value, this.properties.routingKey.value || '', message, { persistent })
+				if (!sent) return outputData('error', { error: 'Error sending message' })
 				outputData('response', { message: 'Ok' })
 			} else {
 				await channel.assertQueue(queue, { durable })
 				// Bind the queue to the exchange
 				const sent = await channel.sendToQueue(queue, message, { persistent })
-				if (!sent)
-					return outputData('error', { error: 'Error sending message' })
+				if (!sent) return outputData('error', { error: 'Error sending message' })
 				outputData('response', { message: 'Ok' })
 			}
 		} catch (error) {

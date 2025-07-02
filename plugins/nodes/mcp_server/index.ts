@@ -37,7 +37,7 @@ export default class implements IClassNode<IProperties> {
 	) {
 		this.dependencies = ['@modelcontextprotocol/sdk', 'child_process']
 		this.info = {
-			title: 'MCP Server',
+			name: 'MCP Server',
 			desc: 'Conecta con servidores MCP (Model Context Protocol)',
 			icon: '󰀵',
 			group: 'Servicios',

@@ -1,8 +1,4 @@
-import type {
-	IClassNode,
-	classOnExecuteInterface,
-	infoInterface
-} from '@shared/interfaces/class.interface.js'
+import type { IClassNode, classOnExecuteInterface, infoInterface } from '@shared/interfaces/class.interface.js'
 import type { IPropertiesType } from '@shared/interfaces/workflow.properties.interface.js'
 
 export default class implements IClassNode {
@@ -15,7 +11,7 @@ export default class implements IClassNode {
 		public meta: { [key: string]: any } = {}
 	) {
 		this.info = {
-			title: 'Message Response',
+			name: 'Message Response',
 			desc: 'Response to messages',
 			icon: '󱧍',
 			group: 'Project',
@@ -37,10 +33,7 @@ export default class implements IClassNode {
 		}
 	}
 
-	async onExecute({
-		execute,
-		outputData
-	}: classOnExecuteInterface): Promise<void> {
+	async onExecute({ execute, outputData }: classOnExecuteInterface): Promise<void> {
 		try {
 			const node = execute.getNodeByType('project/connection/message')
 			if (!node || !node.meta) {

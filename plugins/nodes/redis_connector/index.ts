@@ -59,7 +59,7 @@ export default class implements IClassNode<IProperties, ICredentials> {
 		this.accessSecrets = true
 		this.dependencies = ['ioredis']
 		this.info = {
-			title: 'Redis',
+			name: 'Redis',
 			desc: 'Conecta con Redis para obtener o asignar datos',
 			icon: '󰽘', // Placeholder icon, consider finding a better one
 			group: 'Database',

@@ -1,9 +1,5 @@
 import type { IPropertiesType } from '../../../interfaces/workflow.properties.interface.js'
-import type {
-	IClassNode,
-	classOnExecuteInterface,
-	infoInterface
-} from '../../../interfaces/class.interface.js'
+import type { IClassNode, classOnExecuteInterface, infoInterface } from '../../../interfaces/class.interface.js'
 
 export default class implements IClassNode {
 	constructor(
@@ -11,7 +7,7 @@ export default class implements IClassNode {
 		public properties: IPropertiesType
 	) {
 		this.info = {
-			title: 'Event Manual',
+			name: 'Event Manual',
 			desc: 'Emit a manual event',
 			icon: '󰆍',
 			group: 'Integrations',

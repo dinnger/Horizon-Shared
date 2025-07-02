@@ -15,7 +15,7 @@ export default class implements IClassNode<IProperties> {
 		this.dependencies = []
 
 		this.info = {
-			title: 'Data Transformer',
+			name: 'Data Transformer',
 			desc: 'Transforma datos mediante mapeo, filtrado y expresiones personalizadas',
 			icon: '󰁪',
 			group: 'Utilities',

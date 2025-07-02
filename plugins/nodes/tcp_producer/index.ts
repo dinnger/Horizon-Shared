@@ -1,8 +1,4 @@
-import type {
-	IClassNode,
-	classOnExecuteInterface,
-	infoInterface
-} from '@shared/interfaces/class.interface.js'
+import type { IClassNode, classOnExecuteInterface, infoInterface } from '@shared/interfaces/class.interface.js'
 import type {
 	ICodeProperty,
 	INumberProperty,
@@ -27,7 +23,7 @@ export default class TcpProducer implements IClassNode<IProperties> {
 		public client: any
 	) {
 		this.info = {
-			title: 'TCP Producer',
+			name: 'TCP Producer',
 			desc: 'Envía datos a través de una conexión TCP',
 			icon: '󰹑',
 			group: 'TCP',
@@ -89,19 +85,13 @@ export default class TcpProducer implements IClassNode<IProperties> {
 				name: 'Reintentos:',
 				value: 0,
 				type: 'number',
-				description:
-					'Número de reintentos antes de fallar. 0 significa indefinido.',
+				description: 'Número de reintentos antes de fallar. 0 significa indefinido.',
 				size: 2
 			} // Nueva propiedad para reintentos
 		}
 	}
 
-	async onExecute({
-		inputData,
-		outputData,
-		dependency,
-		context
-	}: classOnExecuteInterface): Promise<void> {
+	async onExecute({ inputData, outputData, dependency, context }: classOnExecuteInterface): Promise<void> {
 		try {
 			const retries = this.properties.retries.value
 			let attempts = 0

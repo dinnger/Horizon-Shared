@@ -24,7 +24,6 @@ for (const file of files) {
 	try {
 		const data = new model()
 		nodesClass[type] = {
-			name: data.info.title,
 			type,
 			info: data.info,
 			group: data.info.group,

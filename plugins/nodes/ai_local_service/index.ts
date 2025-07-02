@@ -14,7 +14,7 @@ export default class implements IClassNode {
 		public properties: IPropertiesType
 	) {
 		this.info = {
-			title: 'IA',
+			name: 'IA',
 			desc: 'Processa el flujo con IA',
 			icon: '󱫞',
 			group: 'Timer',

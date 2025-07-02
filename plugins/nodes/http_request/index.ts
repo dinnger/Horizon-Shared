@@ -10,7 +10,7 @@ export default class implements IClassNode {
 		this.dependencies = ['axios']
 
 		this.info = {
-			title: 'Request',
+			name: 'Request',
 			desc: 'Realiza peticiones REST',
 			icon: '󱌑',
 			group: 'Input/Output',
